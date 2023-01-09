@@ -1,0 +1,240 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-01-05T22:32:44.872Z",
+    "end": "2023-01-05T22:33:28.768Z",
+    "duration": 43896,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c9139a00-5006-44de-a586-de281b50582a",
+      "title": "",
+      "fullFile": "cypress/integration/Suite/testSuite.spec.js",
+      "file": "cypress/integration/Suite/testSuite.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6556ae8c-f75e-4bb9-9e6d-a2844bbbbe9e",
+          "title": "Actionable Elements",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should visit demoqa.com",
+              "fullTitle": "Actionable Elements should visit demoqa.com",
+              "timedOut": null,
+              "duration": 23526,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// by using `cy.visit` command it will redirect to landing screen\ncy.visit(\"https://demoqa.com/\");",
+              "err": {},
+              "uuid": "28f49d4f-5a19-4ce3-96d6-2f86a0b1268e",
+              "parentUUID": "6556ae8c-f75e-4bb9-9e6d-a2844bbbbe9e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should open elements top-card screen",
+              "fullTitle": "Actionable Elements should open elements top-card screen",
+              "timedOut": null,
+              "duration": 602,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// We use the `cy.get()` cmd to get all elements that match the selector.\n// Then, We use the `childern()` cmd to get childern selector.\n// we use the `first()` to get element first index.\n// we use `find()` cmd to find specific element in parent element\n// we use `should` to assert that there are two matched items\ncy.get(_webElements.default.category_cards).children(_webElements.default.top_card).first().find(_webElements.default.card_text).should(\"be.visible\").click().then(cardName => {\n  cardNameText = cardName.text();\n  console.log(cardNameText);\n  cy.get(_webElements.default.page_Title).should(\"be.visible\").then(header => {\n    headerText = header.text();\n    console.log(headerText); // to verify the selected item text should be same\n    expect(cardNameText).to.equal(headerText);\n  });\n}); // to verify landing URL include elements parameter or not.\ncy.url().should(\"include\", \"elements\");",
+              "err": {},
+              "uuid": "7635b0a3-12e0-431d-bc6a-3004ba8edf86",
+              "parentUUID": "6556ae8c-f75e-4bb9-9e6d-a2844bbbbe9e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "28f49d4f-5a19-4ce3-96d6-2f86a0b1268e",
+            "7635b0a3-12e0-431d-bc6a-3004ba8edf86"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 24128,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "22dcc489-d4ec-4f5c-b0dc-0fba791e6c71",
+          "title": "Actionable Elements - Text Box",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify text box - Screen Title",
+              "fullTitle": "Actionable Elements - Text Box should verify text box - Screen Title",
+              "timedOut": null,
+              "duration": 253,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(_webElements.default.text_Box).should(\"be.visible\").click().then(item => {\n  itemText = item.text(); // to verify page title text should be correct\n  cy.get(_webElements.default.page_Title).should(\"have.text\", itemText);\n});",
+              "err": {},
+              "uuid": "4a6096c7-1ff1-4e72-9cb2-80da8695c2fc",
+              "parentUUID": "22dcc489-d4ec-4f5c-b0dc-0fba791e6c71",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should verify all text box - input fields",
+              "fullTitle": "Actionable Elements - Text Box Should verify all text box - input fields",
+              "timedOut": null,
+              "duration": 4642,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(_webElements.default.userName).should(\"be.visible\").type(userName);\ncy.get(_webElements.default.userEmail).should(\"be.visible\").type(userEmail); // by using `type` command we fil the input field\ncy.get(_webElements.default.currentAddress).should(\"be.visible\").type(userCurrentAddress);\ncy.get(_webElements.default.permanentAddress).should(\"be.visible\").type(userPermanentAddress);\ncy.get(_webElements.default.submit_btn, {\n  timeout: 2000\n}).should(\"be.visible\").click({\n  force: true\n}); // get user name text.\ncy.get(_webElements.default.entered_userName).should(\"be.visible\").then(enterUserName => {\n  const enterUserNameText = enterUserName.text(); // to verify enter username text should contain.\n  expect(enterUserNameText).contains(userName);\n}); // get user email text.\ncy.get(_webElements.default.entered_userEmail).should(\"be.visible\").then(enterUserEmail => {\n  const enterUserEmailText = enterUserEmail.text(); // to verify enter useremail text should contain.\n  expect(enterUserEmailText).contains(userEmail);\n}); // get user current address text.\ncy.get(_webElements.default.entered_currentAddress).should(\"be.visible\").then(enterUserCurrentAddress => {\n  const enterUserCurrentAddressText = enterUserCurrentAddress.text(); // to verify enter currentaddress text should contain.\n  expect(enterUserCurrentAddressText).contains(userCurrentAddress);\n}); // get user permanent address text.\ncy.get(_webElements.default.entered_permanentAddress).should(\"be.visible\").then(enterUserPermanentAddress => {\n  const enterUserPermanentAddressText = enterUserPermanentAddress.text(); // to verify enter permanentaddress text should contain.\n  expect(enterUserPermanentAddressText).contains(userPermanentAddress);\n});",
+              "err": {},
+              "uuid": "6b6692d4-41e9-479b-aabc-23f3ad9bfb43",
+              "parentUUID": "22dcc489-d4ec-4f5c-b0dc-0fba791e6c71",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4a6096c7-1ff1-4e72-9cb2-80da8695c2fc",
+            "6b6692d4-41e9-479b-aabc-23f3ad9bfb43"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4895,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "5d76dec9-184f-4382-8c64-729721842581",
+          "title": "Actionable Elements - Check Box",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify check box - Screen Title.",
+              "fullTitle": "Actionable Elements - Check Box should verify check box - Screen Title.",
+              "timedOut": null,
+              "duration": 465,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(_checkBox.default.check_Box).should(\"be.visible\").click().then(item => {\n  itemText = item.text();\n  cy.get(_checkBox.default.page_Title).should(\"have.text\", itemText);\n});",
+              "err": {},
+              "uuid": "9f45c3b6-e0bc-469a-8690-8230956a6494",
+              "parentUUID": "5d76dec9-184f-4382-8c64-729721842581",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should select & verify all radio buttons.",
+              "fullTitle": "Actionable Elements - Check Box should select & verify all radio buttons.",
+              "timedOut": null,
+              "duration": 11158,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get(_checkBox.default.toggle).should(\"be.visible\").click();\ncy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(0).then(home => {\n  const homeText = home.text();\n  console.log(\"@###########\", homeText);\n  cy.get(\"ol\").children(\"li\").find(_checkBox.default.toggle).eq(1).click();\n  cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(1).then(desktop => {\n    const desktopText = desktop.text().toLowerCase();\n    cy.get(\"ol\").children(\"li\").find(_checkBox.default.toggle).eq(2).click();\n    cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(2).then(notes => {\n      const notesText = notes.text().toLowerCase();\n      cy.get(_checkBox.default.notes_checkBox).check({\n        force: true\n      });\n      cy.get(_checkBox.default.selected_checkBox).eq(0).should(\"have.text\", `${notesText}`);\n      cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(3).then(commands => {\n        const commandsText = commands.text().toLowerCase();\n        cy.get(_checkBox.default.commands_checkBox).check({\n          force: true\n        });\n        cy.get(_checkBox.default.selected_checkBox).eq(2).should(\"have.text\", `${commandsText}`);\n        cy.get(\".text-success\").eq(0).should(\"have.text\", `${desktopText}`);\n      });\n    });\n  });\n});\ncy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(4).then(documents => {\n  const documentsText = documents.text().toLowerCase();\n  cy.get(\"ol\").children(\"li\").find(_checkBox.default.toggle).eq(3).click();\n  cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(5).then(workSpace => {\n    const workSpaceText = workSpace.text().toLowerCase();\n    cy.get(_checkBox.default.workSpace_checkBox).check({\n      force: true\n    });\n    cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(6).then(react => {\n      const reactText = react.text().toLowerCase();\n      cy.get(_checkBox.default.react_checkBox).check({\n        force: true\n      });\n      cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(7).then(angular => {\n        const angularText = angular.text().toLowerCase();\n        cy.get(_checkBox.default.angular_checkBox).check({\n          force: true\n        });\n        cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(8).then(veu => {\n          const veuText = veu.text().toLowerCase();\n          cy.get(_checkBox.default.veu_checkBox).check({\n            force: true\n          });\n          cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(9).then(office => {\n            const officeText = office.text().toLowerCase();\n            cy.get(\"ol\").children(\"li\").find(_checkBox.default.toggle).eq(4).click();\n            cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(10).then(publicRadio => {\n              const publicRadioText = publicRadio.text().toLowerCase();\n              cy.get(_checkBox.default.public_checkBox).check({\n                force: true\n              });\n              cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(11).then(privateRadio => {\n                const privateRadioText = privateRadio.text().toLowerCase();\n                cy.get(_checkBox.default.private_checkBox).check({\n                  force: true\n                });\n                cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(12).then(classified => {\n                  const classifiedText = classified.text().toLowerCase();\n                  cy.get(_checkBox.default.classified_checkBox).check({\n                    force: true\n                  });\n                  cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(13).then(general => {\n                    const generalText = general.text().toLowerCase();\n                    cy.get(_checkBox.default.general_checkBox).check({\n                      force: true\n                    });\n                    cy.get(_checkBox.default.selected_checkBox).eq(12).should(\"have.text\", `${generalText}`);\n                  });\n                  cy.get(_checkBox.default.selected_checkBox).eq(11).should(\"have.text\", `${classifiedText}`);\n                });\n                cy.get(_checkBox.default.selected_checkBox).eq(10).should(\"have.text\", `${privateRadioText}`);\n              });\n              cy.get(_checkBox.default.selected_checkBox).eq(9).should(\"have.text\", `${publicRadioText}`);\n            });\n            cy.get(_checkBox.default.selected_checkBox).eq(8).should(\"have.text\", `${officeText}`);\n          });\n          cy.get(_checkBox.default.selected_checkBox).eq(7).should(\"have.text\", `${veuText}`);\n        });\n        cy.get(_checkBox.default.selected_checkBox).eq(6).should(\"have.text\", `${angularText}`);\n      });\n      cy.get(_checkBox.default.selected_checkBox).eq(5).should(\"have.text\", `${reactText}`);\n    });\n    cy.get(_checkBox.default.selected_checkBox).eq(4).should(\"have.text\", `${workSpaceText}`);\n  });\n  cy.get(_checkBox.default.selected_checkBox).eq(3).should(\"have.text\", `${documentsText}`);\n});\ncy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(14).then(downloads => {\n  const downloadsText = downloads.text().toLowerCase();\n  cy.get(\"ol\").children(\"li\").find(_checkBox.default.toggle).eq(5).click();\n  cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(15).then(wordFileDoc => {\n    const wordFileDocText = wordFileDoc.text().toLowerCase();\n    cy.get(_checkBox.default.wordFile_checkBox).check({\n      force: true\n    });\n    cy.get(\"span\").find(_checkBox.default.checkBox_Name).eq(16).then(excelFileDoc => {\n      const excelFileDocText = excelFileDoc.text().toLowerCase();\n      cy.log(excelFileDocText);\n      cy.get(_checkBox.default.excelFile_checkBox).check({\n        force: true\n      });\n      cy.get(_checkBox.default.selected_checkBox).eq(16).then(excelitem => {\n        const excelitemText = excelitem.text().toLowerCase();\n        cy.log(excelitemText);\n      });\n    });\n    cy.get(_checkBox.default.selected_checkBox).eq(15).then(worditem => {\n      const worditemText = worditem.text().toLowerCase();\n      cy.log(worditemText);\n    });\n  });\n  cy.get(_checkBox.default.selected_checkBox).eq(14).should(\"have.text\", `${downloadsText}`);\n});",
+              "err": {},
+              "uuid": "c1ac2ed8-7943-438a-b44b-9e2247fd56e8",
+              "parentUUID": "5d76dec9-184f-4382-8c64-729721842581",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9f45c3b6-e0bc-469a-8690-8230956a6494",
+            "c1ac2ed8-7943-438a-b44b-9e2247fd56e8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11623,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress\\reports\\html\\.jsons"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
