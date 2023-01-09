@@ -6,12 +6,12 @@ An example project using the automation tool, Cypress. These tests are quite sil
 page objects
 various ways of running the tests
 
-Requires
+**Requires**
 
 1. node
 2. git
 
-Setup
+**Setup**
 
 1. Download & Install nodejs.
 2. Download & Install visual studio code (vscode).
@@ -22,7 +22,7 @@ Setup
 
 5. To install cypress.
 
-  **  npm install cypress --save -dev **
+  **npm install cypress --save -dev**
 
 6. Start cypress.
 
