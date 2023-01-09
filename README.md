@@ -21,8 +21,9 @@ various ways of running the tests
   **npm -i init**  ---> creates package.json file.
 
 5. To install cypress.
+   version: 9.7.0
 
-  **npm install cypress --save -dev**
+  **npm install cypress@9.7 --save -dev** 
 
 6. Start cypress.
 
